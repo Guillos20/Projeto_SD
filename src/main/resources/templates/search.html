@@ -22,10 +22,11 @@
             var string = document.getElementById("string").value;
 
             // Perform search logic here
-
-            // Display search results
-            var resultsDiv = document.getElementById("results");
-            resultsDiv.innerHTML = "Search results: " + keyword + ", " + url + ", " + string;
+            var searchData = {
+                keyword: keyword,
+                url: url,
+                string: string
+            };
         }
     </script>
 </body>

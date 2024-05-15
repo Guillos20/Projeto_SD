@@ -2,21 +2,19 @@ package com.example.googol.frontend;
 
 import com.example.googol.backend.*;
 
+import java.rmi.RemoteException;
+
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 
 /**
  * GreetingController
  */
 @Controller
 public class GreetingController {
-    int count = 0;
 
     @GetMapping("/")
     public String redirect() {
@@ -34,7 +32,17 @@ public class GreetingController {
 
     @GetMapping("/search")
     public String searchString() {
+
         return "search";
+    }
+
+    @PostMapping("/search")
+    public String search(@RequestParam(name = "keyword", required = false) String search,
+            @RequestParam(name = "url", required = false) String search1,
+            @RequestParam(name = "string", required = false) String search2)
+            throws RemoteException {
+
+        return "redirect:/results";
     }
 
     @GetMapping("/login")
@@ -42,19 +50,21 @@ public class GreetingController {
         return "login";
     }
 
+    @GetMapping("/results")
+    public String resulString() {
+        return "results";
+    }
+
     @PostMapping("/login")
     public String login(@RequestParam(name = "username", required = true) String username,
             @RequestParam(name = "password", required = true) String password, Model model) {
         if (username.equals("admin") && password.equals("admin")) {
             model.addAttribute("username", username);
-            count = 1;
             return "redirect:/admin";
-        } else if (count == 0) {
+        } else {
 
             return "redirect:/error";
 
-        } else {
-            return "redirect:/admin";
         }
     }
 
@@ -65,26 +75,12 @@ public class GreetingController {
 
     @PostMapping("/error")
     public String erroString() {
-        if (count == 1) {
-            return "redirect:/admin";
-        } else {
-            return "login";
-        }
+        return "login";
     }
 
     @GetMapping("/admin")
     public String admin() {
         return "admin";
-    }
-
-    @GetMapping("/search/keyword")
-    public String searchKeyword() {
-        return "search/keyword";
-    }
-
-    @GetMapping("/search/URL")
-    public String searchURL() {
-        return "search/URL";
     }
 
 }
