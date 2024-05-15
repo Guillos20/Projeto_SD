@@ -21,11 +21,11 @@ public class Barrel extends UnicastRemoteObject implements ClientRMI {
 
     public static void main(String[] args) {
         try {
-            System.setProperty("java.rmi.server.hostname", "194.210.175.139");
+            System.setProperty("java.rmi.server.hostname", "194.210.32.10");
             @SuppressWarnings("unused")
             Registry registry = LocateRegistry.createRegistry(7000);
             Barrel h = new Barrel();
-            Naming.rebind("rmi://194.210.175.139:7000/Barrel", h);
+            Naming.rebind("rmi://194.210.32.10:7000/Barrel", h);
             start();
             System.out.println("Barrel ready.");
             readIndexFromFile();

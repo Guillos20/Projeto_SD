@@ -71,7 +71,7 @@ public class Gateway {
                     activeServerCount++;
                 }
                 try {
-                    server2 = (ClientRMI) Naming.lookup("rmi://194.210.36.188:7000/Barrel");
+                    server2 = (ClientRMI) Naming.lookup("rmi://194.210.32.10:7000/Barrel");
                     if (server2.isServerActive()) {
                         activeServerCount++;
                     }

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Googol Search Page</title>
+</head>
+<body>
+    <h1>Search</h1>
+    <form>
+        <input type="text" id="keyword" placeholder="Enter keyword">
+        <button type="button" onclick="search()">Search</button>
+        <input type="url" id="url" placeholder="Enter URL">
+        <button type="button" onclick="search()">Search</button>
+        <input type="text" id="string" placeholder="Enter string">
+        <button type="button" onclick="search()">Search</button>
+    </form>
+    <div id="results"></div>
+
+    <script>
+        function search() {
+            var keyword = document.getElementById("keyword").value;
+            var url = document.getElementById("url").value;
+            var string = document.getElementById("string").value;
+
+            // Perform search logic here
+
+            // Display search results
+            var resultsDiv = document.getElementById("results");
+            resultsDiv.innerHTML = "Search results: " + keyword + ", " + url + ", " + string;
+        }
+    </script>
+</body>
+</html>
