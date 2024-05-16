@@ -37,12 +37,10 @@ public class GreetingController {
     }
 
     @PostMapping("/search")
-    public String search(@RequestParam(name = "keyword", required = false) String search,
-            @RequestParam(name = "url", required = false) String search1,
-            @RequestParam(name = "string", required = false) String search2)
-            throws RemoteException {
+    public String search(@RequestParam(name = "search", required = true) String search, Model model) {
+        model.addAttribute("search", search);
+        return "results";
 
-        return "redirect:/results";
     }
 
     @GetMapping("/login")
